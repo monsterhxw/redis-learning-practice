@@ -127,9 +127,9 @@ public class Chapter01 {
         // 将文章信息存储到一个散列里面
         jedis.hmset(article, articleInfo);
 
-        // 将文章添加到根据发布时间排序的有序集合
-        jedis.zadd("score:", now + VOTE_SCORE, article);
         // 根据评分排序的有序集合里面
+        jedis.zadd("score:", now + VOTE_SCORE, article);
+        // 将文章添加到根据发布时间排序的有序集合
         jedis.zadd("time:", now, article);
 
         return articleId;
